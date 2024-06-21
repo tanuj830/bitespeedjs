@@ -17,6 +17,12 @@ app.post("/identify", async (req, res) => {
   }
 });
 
-app.listen(8000, () => {
-  console.log("Server is running on port 3000");
-});
+AppDataSource.initialize()
+  .then(() => {
+    app.listen(8000, () => {
+      console.log("Server is running on port 3000");
+    });
+  })
+  .catch((error) => {
+    console.error("Error during Data Source initialization:", error);
+  });
